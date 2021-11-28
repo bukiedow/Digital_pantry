@@ -1,17 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Items</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
+
+        <h1>idsidjosdsdsfs</h1>
+
     {% for item in items %}
-    {{ item.item_name }}<br>
-    {{ item.category_name }}<br>
-    {{ item.item_description }}<br>
-    {{ item.purchase_date }}<br>
-{% endfor %}
-</body>
-</html>
+        {{ item.item_name }}<br>
+        {{ item.category_name }}<br>
+        {{ item.item_description }}<br>
+        {{ item.purchase_date }}<br>
+    {% endfor %}
+
+{% endblock %}
+
+
