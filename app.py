@@ -27,6 +27,7 @@ def get_items():
     return render_template("items.html", items=items)
 
 
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -46,6 +47,8 @@ def register():
 
         session["user"] = request.form.get("username").lower()
         flash("Congratulations, you are now part of us!")
+        return redirect(url_for(
+                            "profile", username=session["user"]))
     return render_template("register.html")
 
 
@@ -63,6 +66,8 @@ def login():
                 existing_user["password"], request.form.get("password")):
                     session["user"] = request.form.get("username").lower()
                     flash("Welcome, {}".format(request.form.get("username")))
+                    return redirect(url_for(
+                            "profile", username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -75,7 +80,28 @@ def login():
 
     return render_template("login.html")
 
-    
+
+
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
+    # grab the session user's username from db
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    return render_template("profile.html", username=username)
+
+    if session["user"]:
+        return render_template("profile.html", username=username)
+
+    return redirect(url_for("login"))
+
+
+@app.route("/logout")
+def logout():
+    flash("Goodbye, hope to see you soon")
+    session.pop("user")
+    return redirect(url_for("login"))
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
