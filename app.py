@@ -108,12 +108,13 @@ def add_item():
             "item_name": request.form.get("item_name"),
             "item_description": request.form.get("item_description"),
             "purchase_date": request.form.get("purchase_date"),
+            "item_quantity": request.form.get("item_quantity"),
             "created_by": session["user"]
         }
 
         mongo.db.items.insert_one(item)
         flash("Item Successfully Added") 
-        return redirect(url_for("get_tasks"))
+        return redirect(url_for("get_items"))
 
     categories = mongo.db.categories.find().sort("category_name", 1)
     return render_template("add_item.html", categories=categories)
