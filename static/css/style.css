@@ -1,0 +1,9 @@
+.btn-small {
+    margin: 4px;
+    text-transform: capitalize;
+}
+
+.collapsible-header .col strong {
+    margin: 5px;
+    line-height: 42px;
+}

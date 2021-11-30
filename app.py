@@ -87,11 +87,9 @@ def profile(username):
     # grab the session user's username from db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    return render_template("profile.html", username=username)
 
     if session["user"]:
         return render_template("profile.html", username=username)
-
     return redirect(url_for("login"))
 
 
@@ -102,9 +100,24 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/add_item")
+@app.route("/add_item", methods=["GET", "POST"])
 def add_item():
-    return render_template("add_item.html")
+    if request.method == "POST":
+        item = {
+            "category_name": request.form.get("category_name"),
+            "item_name": request.form.get("item_name"),
+            "item_description": request.form.get("item_description"),
+            "purchase_date": request.form.get("purchase_date"),
+            "created_by": session["user"]
+        }
+
+        mongo.db.items.insert_one(item)
+        flash("Item Successfully Added") 
+        return redirect(url_for("get_tasks"))
+
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    return render_template("add_item.html", categories=categories)
+
 
 
 if __name__ == "__main__":
