@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<h3 class="light-blue-text text-darken-4 center-align">Items currently in your pantry</h3>
+<h3 class="teal-text text-lighten-2 center-align">Your Pantry Overview</h3>
 
 <ul class="collapsible popout">
     {% for item in items %}
@@ -9,8 +9,8 @@
             <i class="fas fa-caret-down"></i>
             <div class="col s3">
                 <i class="fas fa-utensils"></i>
-                <a href="" class="btn-floating btn-small waves-effect waves-light teal-darken-5">Add</a>
-                <a href="" class="btn-floating btn-small waves-effect waves-light teal-darken-4">Edit</a>
+                <a href="" class="btn-floating btn-small waves-effect waves-light teal-darken-5">Done</a>
+                <a href="{{ url_for('edit_item', item_id=item._id) }}" class="btn-floating btn-small waves-effect waves-light teal-darken-4">Edit</a>
             </div>
             <div class="col s9">
                 <strong>{{ item.item_name }}</strong> : {{ item.purchase_date }}
