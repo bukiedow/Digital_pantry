@@ -27,6 +27,13 @@ def get_items():
     return render_template("items.html", items=items)
 
 
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    items = list(mongo.db.items.find({"$text": {"$search": query}}))
+    return render_template("items.html", items=items)
+
+
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -145,6 +152,46 @@ def delete_item(item_id):
     mongo.db.items.remove({"_id": ObjectId(item_id)})
     flash("Item Successfully Deleted")
     return redirect(url_for("get_items"))
+
+
+@app.route("/get_categories")
+def get_categories():
+    categories = list(mongo.db.categories.find().sort("category_name", 1))
+    return render_template("manage_pantry.html", categories=categories)
+
+
+@app.route("/add_category", methods=["GET", "POST"])
+def add_category():
+    if request.method == "POST":
+        category = {
+            "category_name": request.form.get("category_name")
+        }
+        mongo.db.categories.insert_one(category)
+        flash("New Category Added to Pantry")
+        return redirect(url_for("get_categories"))
+
+    return render_template("add_pantry.html")
+
+
+@app.route("/edit_category/<category_id>", methods=["GET", "POST"])
+def edit_category(category_id):
+    if request.method == "POST":
+        submit = {
+            "category_name": request.form.get("category_name")
+        }
+        mongo.db.categories.update({"_id": ObjectId(category_id)}, submit)
+        flash("Category Successfully Updated")
+        return redirect(url_for("get_categories"))
+
+    category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
+    return render_template("edit_pantry.html", category=category)
+
+
+@app.route("/delete_category/<category_id>")
+def delete_category(category_id):
+    mongo.db.categories.remove({"_id": ObjectId(category_id)})
+    flash("Category Successfully Deleted")
+    return redirect(url_for("get_categories"))
 
 
 if __name__ == "__main__":
