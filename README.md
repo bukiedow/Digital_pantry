@@ -17,9 +17,7 @@ Digital pantry is an online repository for home use. It is an online pantry syst
 ## Design
 
 ### Colour Scheme
-The main colours used are teal (different shades) and default white. There is the occassional red color for danger buttons representing action buttons.
-
-
+The main colours used are teal, nude and default white. There is the occassional red color for danger buttons representing action buttons.
 
 
 
@@ -86,12 +84,12 @@ Friends and family members were asked to review the site and documentation to po
 
 ## Known Bugs
    On particular sized devices, buttons seem to overlap.
+   
 ## Deployment
 
 ### Github Pages
 The project was deployed to github and heroku.
 
-## 🔗 Links
 
 
 ## Credits
