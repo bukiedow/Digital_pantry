@@ -3,33 +3,42 @@
 
 Digital pantry is an online repository for home use. It is an online pantry system where users can record items they have in their physical pantry.
 
-## USER EXPERIENCE
 ## User Stories
-### First Time Visitor Goals:
 
-    1. As a First Time Visitor, I want to easily understand the main purpose of the site and learn more about the organisation.
-    2. As a First Time Visitor, I want to be able to easily navigate throughout the site to find content.
+1. All users must register to have full access to all features of the site.
+2. A registered user after logging in will be naviagted to the user profile page that contains a welcome message and various navigation buttons.
+3. A registered user will be able to create, delete, and edit items in their pantry. There is no admin access restricting any funtionality of the website.
+4. A registered user will be able to search for already cretaed items in their pantry.
+5. A registered user will be able to create a grocery list.
+6. A registered user will be able to strike out items in their grocery list as well as clear the page.
 
 
-### Returning Visitor Goals:
-    1. As a returning visitor, I want to be able to see the links clearly.
 
-
-### Frequent User Goals:
-    1. As a Frequent User, I want to be able to record items in my pantry.
-    2. As a Frequent User, I want to be able to edit and delete items in my pantry.
-    3. As a Frequent User, I want to be able to create a shopping list.
-    
 ## Design
 
 ### Colour Scheme
-    The main colours used are teal (different shades) and default white. There is the occassional red color for danger buttons representing action buttons.
+The main colours used are teal (different shades) and default white. There is the occassional red color for danger buttons representing action buttons.
 
 
 
 
 
-## Wireframe
+## Database Schema
+
+My MongoDB database consists of 3 collections, one for each of the following:
+
+1. Categories : This houses data from pantry categories.
+2. Items : This houses data for pantry items.
+3. Users: This houses user registeration and login details.
+## Features
+
+### Current Features
+ Simple Online pantry with CRUD operations and user authnetication.
+
+
+### Potential future Features
+1. Flash message that appears when purchase date is more than 30 days from input dates.
+2. Flash message that appears when purchase date is lesfourteen days for particular items.]
 ## Technologies Used
 
 ### Languages Used
@@ -58,8 +67,15 @@ Digital pantry is an online repository for home use. It is an online pantry syst
 
     6. Balsamiq:
         Balsamiq was used to create the wireframes during the design process.
-## Testing
 
+    7. Flask:
+         python web framework to hold all the code and templates together as one site.
+
+    8. MongoDB:
+        Non-relational database to store all information about the recipes, cuisines etc.
+
+## Testing
+The w3c markup validator was used to validate every page of the project.
 
 ## Further Testing
 
@@ -70,3 +86,13 @@ Friends and family members were asked to review the site and documentation to po
 
 ## Known Bugs
    On particular sized devices, buttons seem to overlap.
+## Deployment
+
+### Github Pages
+The project was deployed to github and heroku.
+
+## 🔗 Links
+
+
+## Credits
+The entire team at code institute for explainable videos.
