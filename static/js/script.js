@@ -1,70 +1,73 @@
-$(document).ready(function() {
-    $('.sidenav').sidenav({edge: 'right' });
-    $('.collapsible').collapsible();
-    $("select").formSelect();
-    $(".datepicker").datepicker({
-      format: "dd mmmm, yyyy",
-      yearRange: 2,
-      showClearBtn: true,
-      i18n: {
-          done: "Select"
-      }
+$(document).ready(function () {
+  $('.sidenav').sidenav({
+    edge: 'right'
   });
+  $('.collapsible').collapsible();
+  $("select").formSelect();
+  $(".datepicker").datepicker({
+    format: "dd mmmm, yyyy",
+    yearRange: 2,
+    showClearBtn: true,
+    i18n: {
+      done: "Select"
+    }
+  });
+  validateMaterializeSelect();
 
-
-validateMaterializeSelect();
-function validateMaterializeSelect() {
-    let classValid = { "border-bottom": "1px solid #4caf50", "box-shadow": "0 1px 0 0 #4caf50" };
-    let classInvalid = { "border-bottom": "1px solid #f44336", "box-shadow": "0 1px 0 0 #f44336" };
+  function validateMaterializeSelect() {
+    let classValid = {
+      "border-bottom": "1px solid #4caf50",
+      "box-shadow": "0 1px 0 0 #4caf50"
+    };
+    let classInvalid = {
+      "border-bottom": "1px solid #f44336",
+      "box-shadow": "0 1px 0 0 #f44336"
+    };
     if ($("select.validate").prop("required")) {
-        $("select.validate").css({ "display": "block", "height": "0", "padding": "0", "width": "0", "position": "absolute" });
+      $("select.validate").css({
+        "display": "block",
+        "height": "0",
+        "padding": "0",
+        "width": "0",
+        "position": "absolute"
+      });
     }
     $(".select-wrapper input.select-dropdown").on("focusin", function () {
-        $(this).parent(".select-wrapper").on("change", function () {
-            if ($(this).children("ul").children("li.selected:not(.disabled)").on("click", function () { })) {
-                $(this).children("input").css(classValid);
-            }
-        });
-    }).on("click", function () {
-        if ($(this).parent(".select-wrapper").children("ul").children("li.selected:not(.disabled)").css("background-color") === "rgba(0, 0, 0, 0.03)") {
-            $(this).parent(".select-wrapper").children("input").css(classValid);
-        } else {
-            $(".select-wrapper input.select-dropdown").on("focusout", function () {
-                if ($(this).parent(".select-wrapper").children("select").prop("required")) {
-                    if ($(this).css("border-bottom") != "1px solid rgb(76, 175, 80)") {
-                        $(this).parent(".select-wrapper").children("input").css(classInvalid);
-                    }
-                }
-            });
+      $(this).parent(".select-wrapper").on("change", function () {
+        if ($(this).children("ul").children("li.selected:not(.disabled)").on("click", function () {})) {
+          $(this).children("input").css(classValid);
         }
+      });
+    }).on("click", function () {
+      if ($(this).parent(".select-wrapper").children("ul").children("li.selected:not(.disabled)").css("background-color") === "rgba(0, 0, 0, 0.03)") {
+        $(this).parent(".select-wrapper").children("input").css(classValid);
+      } else {
+        $(".select-wrapper input.select-dropdown").on("focusout", function () {
+          if ($(this).parent(".select-wrapper").children("select").prop("required")) {
+            if ($(this).css("border-bottom") != "1px solid rgb(76, 175, 80)") {
+              $(this).parent(".select-wrapper").children("input").css(classInvalid);
+            }
+          }
+        });
+      }
     });
-}
-});
-
-
-
-document.querySelector("#pencil").addEventListener("click", () => {
-    document.querySelector("#all_items").textContent = "";
-  })
-  
-  document.querySelector("#user_input").addEventListener("keydown", (event) => {
-    if(event.key == "Enter")
-      addItem();
-  });
-  
-  addItem = () => {
-    const item = document.createElement("h2")
-    item.textContent = "- " + document.querySelector("#user_input").value;
-  
-    item.addEventListener("click", () => {
-      item.style.textDecoration = "line-through";
-    })
-  
-    document.querySelector("#all_items").appendChild(item);
-    document.querySelector("#user_input").value = "";
   }
-
-
+});
+document.querySelector("#pencil").addEventListener("click", () => {
+  document.querySelector("#all_items").textContent = "";
+})
+document.querySelector("#user_input").addEventListener("keydown", (event) => {
+  if (event.key == "Enter") addItem();
+});
+addItem = () => {
+  const item = document.createElement("h2")
+  item.textContent = " " + document.querySelector("#user_input").value;
+  item.addEventListener("click", () => {
+    item.style.textDecoration = "line-through";
+  })
+  document.querySelector("#all_items").appendChild(item);
+  document.querySelector("#user_input").value = "";
+}
 var slideIndex = 0;
 showSlides();
 
@@ -73,16 +76,16 @@ function showSlides() {
   var slides = document.getElementsByClassName("mySlides");
   var dots = document.getElementsByClassName("dot");
   for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
+    slides[i].style.display = "none";
   }
   slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}    
+  if (slideIndex > slides.length) {
+    slideIndex = 1
+  }
   for (i = 0; i < dots.length; i++) {
     dots[i].className = dots[i].className.replace(" active", "");
   }
-  slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " active";
+  slides[slideIndex - 1].style.display = "block";
+  dots[slideIndex - 1].className += " active";
   setTimeout(showSlides, 2000); // Change image every 2 seconds
 }
-
-

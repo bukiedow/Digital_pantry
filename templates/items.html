@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
+<h2>Welcome to Digital Pantry</h2>
+<p>This is your one stop for recording home items and creating an exhaustive shopping list. Feel free to look around</p>
 <div class="row">
     <div class="col s12 m8 offset-m2">
         <div class="card-panel">
             <h3 class="center-align teal-text text-darken-2">
-YOUR PANTRY           </h3>
+                YOUR PANTRY </h3>
         </div>
     </div>
 </div>
@@ -29,12 +31,6 @@ YOUR PANTRY           </h3>
 {% if items|length > 0 %}
 
 
-
-
-
-
-
-
 <ul class="collapsible popout">
     {% for item in items %}
     <li>
@@ -43,8 +39,10 @@ YOUR PANTRY           </h3>
             <div class="col s3">
                 <i class="fas fa-utensils"></i>
                 {% if session.user|lower == item.created_by|lower %}
-                    <a href="{{ url_for('delete_item', item_id=item._id) }}" class="btn-floating btn-small waves-effect waves-light teal-darken-5">Done</a>
-                    <a href="{{ url_for('edit_item', item_id=item._id) }}" class="btn-floating btn-small waves-effect waves-light teal-darken-4">Edit</a>
+                <a href="{{ url_for('delete_item', item_id=item._id) }}"
+                    class="btn-floating btn-small waves-effect waves-light teal-darken-5">Done</a>
+                <a href="{{ url_for('edit_item', item_id=item._id) }}"
+                    class="btn-floating btn-small waves-effect waves-light teal-darken-4">Edit</a>
                 {% endif %}
             </div>
             <div class="col s9">
@@ -64,8 +62,8 @@ YOUR PANTRY           </h3>
 </ul>
 
 {% else %}
-        <h3 class="red-text text-darken-4 center-align">No Results Found</h3>
-    {% endif %}
+<h3 class="red-text text-darken-4 center-align">No Results Found</h3>
+{% endif %}
 
-    
+
 {% endblock %}
